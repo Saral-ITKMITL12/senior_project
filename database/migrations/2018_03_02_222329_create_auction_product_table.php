@@ -17,12 +17,14 @@ class CreateAuctionProductTable extends Migration
             $table->increments('id');
             $table->string('title', 50);
             $table->text('description');
-            $table->string('status')->default('open');
+            $table->string('status')->default('เปิด');
             $table->string('winner')->nullable();
+            $table->string('category');
             $table->dateTime('open_time');
             $table->dateTime('close_time');
-            $table->tinyInteger('bid_step');
-            $table->tinyInteger('price');
+            $table->Integer('bid_step');
+            $table->Integer('start_price');
+            $table->Integer('price');
             $table->tinyInteger('user_id');
             $table->string('images');
             $table->timestamps();

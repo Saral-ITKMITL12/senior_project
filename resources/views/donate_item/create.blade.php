@@ -10,7 +10,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card card-default">
-                    <div class="card-header"><h4>Add New Donation Product</h4></div>
+                    <div class="card-header"><h4>สร้างสิ่งของประมูล</h4></div>
 
                     <div class="card-body mt-4">
 
@@ -18,7 +18,7 @@
      {{ csrf_field() }}
 
       <div class="form-group row">
-          <label for="title" class="col-md-4 col-form-label text-md-right">Item Title</label>
+          <label for="title" class="col-md-4 col-form-label text-md-right">ชื่อสิ่งของ</label>
 
           <div class="col-md-6">
               <input id="title" type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}" required autofocus>
@@ -32,7 +32,7 @@
       </div>
 
       <div class="form-group row">
-          <label for="description" class="col-md-4 col-form-label text-md-right ">Description</label>
+          <label for="description" class="col-md-4 col-form-label text-md-right ">รายละเอียด</label>
 
           <div class="col-md-6">
               <textarea class="form-control" id="description" rows="3" type="text" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" value="{{ old('description') }}"></textarea>
@@ -46,7 +46,7 @@
 
 
       <div class="form-group row">
-          <label for="description" class="col-md-4 col-form-label text-md-right ">Condition</label>
+          <label for="description" class="col-md-4 col-form-label text-md-right ">เงื่อนไข</label>
 
           <div class="col-md-6 ">
               <textarea class="form-control" id="condition" rows="2" type="text" class="form-control{{ $errors->has('condition') ? ' is-invalid' : '' }}" name="condition" value="{{ old('condition') }}"></textarea>
@@ -59,7 +59,7 @@
       </div>
 
     <div class="form-group row">
-    <label for="name" class="col-md-4 col-form-label text-md-right">Start</label>
+    <label for="name" class="col-md-4 col-form-label text-md-right">เวลาเริ่ม</label>
     <div class='input-group date col-md-4 ml-4' id='startTime'>
       <input type="datetime-local" class="form-control" name="open_time" required/>
 
@@ -67,7 +67,7 @@
     </div>
 
           <div class="form-group row">
-        <label for="name" class="col-md-4 col-form-label text-md-right">Expire</label>
+        <label for="name" class="col-md-4 col-form-label text-md-right">เวลาปิด</label>
         <div class='input-group date col-md-4 ml-4' id='endTime'>
           <input type="datetime-local" class="form-control" name="close_time"required/>
 
@@ -75,7 +75,7 @@
       </div>
 
       <div class="form-group row">
-          <label for="images" class="col-md-4 col-form-label text-md-right ">Image</label>
+          <label for="images" class="col-md-4 col-form-label text-md-right ">รูปสิ่งของ</label>
           <div class="col-md-6">
             <input required type="file" class="" name="images[]"  multiple>
                       @if ($errors->has('images'))
@@ -99,7 +99,7 @@
 
       <div class="container col-12">
           <div class="form-group text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">สร้าง</button>
           </div>
       </div>
 

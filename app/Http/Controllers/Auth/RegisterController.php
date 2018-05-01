@@ -66,12 +66,7 @@ class RegisterController extends Controller
             'file1' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'file2' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
-    // $request->validate([
-    //     'title' => 'required|max:100',
-    //     'description' => 'required|max:200',
-    //     //'status' => 'required'
-    //
-    // ]);
+
       }
 
     /**

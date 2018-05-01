@@ -1,11 +1,13 @@
 @extends('layouts/app')
 
 @section('content')
+
+@include('donate_item/search_tab')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-default">
-                <div class="card-header"><h4>Donation List</h4></div>
+                <div class="card-header"><h4>รายการสิ่งของบริจาค</h4></div>
                   <div class="card-body">
             @foreach($donate_item as $di)
             <div class="row">

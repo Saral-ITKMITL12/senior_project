@@ -14,20 +14,3 @@ class ManageReportController extends Controller
     {
         $this->middleware('auth:admin');
     }
-
-    public function index()
-    {
-          $report = Report::all();
-
-          return view('admin.report',compact('report'));
-    }
-
-
-    public function update(Request $request)
-    {
-        $report = Report::find($request->id);
-        $report->status = 'Seen';
-        $report->update();
-        $request->session()->flash('message', 'Successfully modified the task!');
-        return back();
-    }

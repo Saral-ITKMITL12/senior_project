@@ -1,12 +1,13 @@
 @extends('layouts/app')
 @section('content')
-<h1>Edit Profile</h1>
-<hr>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
+          <a href="profile/{{$user->id}}"><h4><strong>ดูโปรไฟล์</strong></h4></a>
             <div class="card card-default">
-                <div class="card-header">แก้ไขโปรไฟล์</div>
+
+                <div class="card-header"><h4>แก้ไขโปรไฟล์</h4></div>
 
                 <div class="card-body">
                   <form method="post" action="{{route('profile.update', $user)}}">
@@ -17,7 +18,7 @@
   <div class="row pb-5">
     <div class="container col-3 ">
   <img alt="User Pic" style="width: 250px;height: 200px;" src="{{ asset(Auth::user()->image_profile)}}" id="profile-image1" class="img-circle img-responsive">
-  <a class ="col-12 ml-5 pl-5" href="profile/{{$user->id}}">View Profile</a>
+  <u><a class ="col-12 ml-5 pl-3" href="profile/{{$user->id}}">เปลี่ยนรูปโปรไฟล์</a></u>
   </div>
   <div class="container col-5 pt-3">
 <div class="panel panel-default">

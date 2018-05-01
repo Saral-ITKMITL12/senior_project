@@ -12,7 +12,7 @@ class TestingController extends Controller
   public function show()
   {
       //$user =User::get(['id', 'name', 'email'])->toArray()
-      return view('test');
+      return view('search');
   }
 
 

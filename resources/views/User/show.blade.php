@@ -1,12 +1,11 @@
 @extends('layouts/app')
 @section('content')
-<h1>Profile</h1>
-<hr>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10 ">
+          <a href="{{ route('profile.edit') }}"><h4><strong>แก้ไขโปรไฟล์</strong></h4></a>
             <div class="card card-default ">
-                <div class="card-header">โปรไฟล์ของสมาชิกหมายเลข #{{$user->id}}</div>
+                <div class="card-header"><h4>โปรไฟล์ของ  {{$user->fname}}       {{$user->lname}}</h4></div>
                 <div class="card-body">
 
           <div class="container ml-3 col-12">
@@ -14,7 +13,7 @@
               <div class="container col-3 ">
             <img alt="User Pic" style="width: 250px;height: 200px;" src="{{ asset(Auth::user()->image_profile)}}" id="profile-image1" class="img-circle img-responsive">
             @if(Auth::user()->id == $user->id)
-            <a class ="col-12 ml-5 pl-5" href="{{ route('profile.edit') }}">Edit Profile</a>
+            <!-- <a class ="col-12 ml-5 pl-5" href="">Edit Profile</a> -->
             @endif
             </div>
             <div class="container col-5 pt-3">

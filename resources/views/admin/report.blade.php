@@ -4,15 +4,22 @@
 @if (Session::has('message'))
     <div class="alert alert-info">{{ Session::get('message') }}</div>
 @endif
-<a class="nav-link" href="{{ route('report.create') }}">Create Report</a></li>
-<table class="table">
-  <thead class="thead-dark">
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card card-default">
+                <div class="card-header"><h4>จัดการสินค้าประมูล</h4></div>
+                  <div class="card-body">
+
+            <table class="table table-striped table-sm ml-3 ">
+        <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Report Title</th>
-      <th scope="col">Report Description</th>
-      <th scope="col">Created At</th>
-      <th scope="col">Action</th>
+      <th scope="col">ID</th>
+      <th scope="col">หัวข้อ</th>
+      <th scope="col">รายละเอียด</th>
+      <th scope="col">สร้างเมื่อ</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -38,5 +45,10 @@
     @endforeach
   </tbody>
 </table>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auction;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\AuctionProduct;
+use App\AuctionTran;
 use Auth;
 use App\User;
 class AuctionProductController extends Controller
@@ -65,13 +66,16 @@ class AuctionProductController extends Controller
       $auc_product->title = $request->title;
       $auc_product->description = $request->description;
       $auc_product->price = $request->price;
+      $auc_product->start_price = $request->price;
       $auc_product->bid_step = $request->bid_step;
+      $auc_product->category = $request->category;
       $auc_product->user_id = $id;
       $auc_product->open_time = $request->open_time;
       $auc_product->close_time = $request->close_time;
       $auc_product->images = json_encode($images);
       $auc_product->save();
       $request->session()->flash('message', 'Successfully!');
+      $auc_product = User::where('user_id', $id)->get();
         return redirect('/auction_product');
   }
 
@@ -101,6 +105,27 @@ class AuctionProductController extends Controller
       return view('auction_product.manage',compact('auc_product',$auc_product));
   }
 
+  public function history()
+  {
+      $id = Auth::id();
+      $auc_tran = AuctionTran::where('user_id', $id)->get();
+      $tran = array();
+      if($auc_tran->count() == 0){
+        // code...
+      }
+      foreach ($auc_tran as $key => $auction) {
+        $tran[] = $auction->auction_product_id;
+      }
+      $tran_final = array_unique($tran);
+      $auc_product = collect(new AuctionProduct);
+      foreach ($tran_final as $value) {
+        $auc_item = AuctionProduct::find($value);
+        $auc_product->push($auc_item);
+      }
+      return view('auction_product.history',compact('auc_product',$auc_product));
+  }
+
+
   /**
    * Update the specified resource in storage.
    *
@@ -108,19 +133,33 @@ class AuctionProductController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, Auction_product $auc_product)
-  {
-      $request->validate([
-        'title' => 'required|max:100',
-        'description' => 'required|max:200',
-    ]);
+   public function search(Request $request)
+   {
 
-      $auc_product->title = $request->title;
-      $auc_product->description = $request->description;
-      $auc_product->save();
-      $request->session()->flash('message', 'Successfully modified the task!');
-      return redirect('auction_product');
-  }
+          if($request->has('search')){
+            if ($request->has('category')) {
+              $auc_product = AuctionProduct::where('title', 'LIKE', '%'.$request->search.'%')
+                                             ->where('category', 'LIKE', '%'.$request->category.'%')
+                                             ->orWhere('description', 'LIKE', '%'.$request->search.'%')
+                                             ->get();
+            }else{
+              $auc_product = AuctionProduct::where('title', 'LIKE', '%'.$request->search.'%')
+                                             ->orWhere('description', 'LIKE', '%'.$request->search.'%')
+                                             ->get();
+                                           }
+          }else{
+              $auc_product = AuctionProduct::all();
+          }
+          return view('auction_product.index',compact('auc_product'));
+   }
+
+   public function category($id)
+   {
+
+              $auc_product = AuctionProduct::where('category', 'LIKE', '%'.$id.'%')
+                                             ->get();
+          return view('auction_product.index',compact('auc_product'));
+   }
 
   /**
    * Remove the specified resource from storage.

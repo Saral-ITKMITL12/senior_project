@@ -10,14 +10,14 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card card-default">
-                    <div class="card-header"><h4>Add New Auction Product</h4></div>
+                    <div class="card-header"><h4>สร้างสินค้าประมูล</h4></div>
                       <div class="card-body mt-4">
 
      <form action="{{ url('/auction_product') }}" form class="form-horizontal" method="post" enctype="multipart/form-data">
      {{ csrf_field() }}
 
       <div class="form-group row">
-          <label for="title" class="col-md-4 col-form-label text-md-right">Product Name</label>
+          <label for="title" class="col-md-4 col-form-label text-md-right">ชื่อสินค้า</label>
 
           <div class="col-md-6">
               <input id="title" type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}" required autofocus>
@@ -31,7 +31,7 @@
       </div>
 
       <div class="form-group row">
-          <label for="description" class="col-md-4 col-form-label text-md-right ">Description</label>
+          <label for="description" class="col-md-4 col-form-label text-md-right ">รายละเอียด</label>
 
           <div class="col-md-6">
               <textarea class="form-control" id="description" rows="3" type="text" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" value="{{ old('description') }}"></textarea>
@@ -44,7 +44,7 @@
       </div>
 
       <div class="form-group row">
-          <label for="price"  class="col-md-4 col-form-label text-md-right ">StartPrice</label>
+          <label for="price"  class="col-md-4 col-form-label text-md-right ">ราคาเริ่มต้น</label>
 
           <div class="col-md-6">
                 <input id="price" type="text" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" name="price" value="{{ old('price') }}" >
@@ -58,7 +58,7 @@
 
 
       <div class="form-group row">
-        <label for="bid_step" class="col-md-4 col-form-label text-md-right">Bidding Step</label>
+        <label for="bid_step" class="col-md-4 col-form-label text-md-right">ระดับการประมูล</label>
         <div class="col-md-6">
             <select name="bid_step" class="custom-select d-block w-100" id="bid_step">
                   <option value="">Select bidding step</option>
@@ -87,9 +87,24 @@
       </div>
 
     </div> -->
+    <div class="form-group row">
+      <label for="category" class="col-md-4 col-form-label text-md-right">ประเภท</label>
+      <div class="col-md-6">
+          <select name="category" class="custom-select d-block w-100" id="category">
+                <option value="">Select bidding step</option>
+                <option value="อุปกรณ์การเรียนเฉพาะทาง" @if (old('category') == "อุปกรณ์การเรียนเฉพาะทาง") {{ 'selected' }} @endif>อุปกรณ์การเรียนเฉพาะทาง</option>
+                <option value="ของใช้ภายในหอพัก" @if (old('category') == "ของใช้ภายในหอพัก") {{ 'selected' }} @endif>ของใช้ภายในหอพัก</option>
+                <option value="อุปกรณ์ไอที" @if (old('category') == "อุปกรณ์ไอที") {{ 'selected' }} @endif>อุปกรณ์ไอที</option>
+                <option value="หนังสือเรียนและชีทสรุป" @if (old('category') == "หนังสือเรียนและชีทสรุป") {{ 'selected' }} @endif>หนังสือเรียนและชีทสรุป</option>
+                <option value="อุปกรณ์กีฬา" @if (old('category') == "อุปกรณ์กีฬา") {{ 'selected' }} @endif>อุปกรณ์กีฬา</option>
+                <option value="เครื่องดนตรี" @if (old('category') == "เครื่องดนตรี") {{ 'selected' }} @endif>เครื่องดนตรี</option>
+                <option value="อื่นๆ" @if (old('category') == "อื่นๆ") {{ 'selected' }} @endif>อื่นๆ</option>
+          </select>
+      </div>
+    </div>
 
     <div class="form-group row">
-    <label for="name" class="col-md-4 col-form-label text-md-right">Start</label>
+    <label for="name" class="col-md-4 col-form-label text-md-right">เวลาเริ่ม</label>
     <div class='input-group date col-md-4 ml-4' id='startTime'>
       <input type="datetime-local" class="form-control" name="open_time" required/>
 
@@ -97,14 +112,14 @@
   </div>
 
           <div class="form-group row">
-        <label for="name" class="col-md-4 col-form-label text-md-right">Expire</label>
+        <label for="name" class="col-md-4 col-form-label text-md-right">เวลาปิด</label>
         <div class='input-group date col-md-4 ml-4' id='endTime'>
           <input type="datetime-local" class="form-control" name="close_time" id='endTime'required/>
 
         </div>
       </div>
       <div class="form-group row">
-          <label for="images" class="col-md-4 col-form-label text-md-right ">Image</label>
+          <label for="images" class="col-md-4 col-form-label text-md-right ">รูปสินค้า</label>
           <div class="col-md-6">
             <input required type="file" class="" name="images[]"  multiple>
                       @if ($errors->has('images'))
@@ -128,7 +143,7 @@
 
       <div class="container col-12">
           <div class="form-group text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">สร้าง</button>
           </div>
       </div>
     </form>

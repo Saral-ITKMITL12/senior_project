@@ -38,8 +38,16 @@
                             <li><a class="nav-link" href="{{ route('register') }}">Register</a></li>
                             </ul>
                         @else
-                        <ul class="navbar-nav mr-auto mr-5">
-                        <li><a class="nav-link" href="{{ route('admin.register-manage') }}">Register Manager</a></li>
+                        <ul class="navbar-nav ">
+                        <li><a class="nav-link" href="{{ route('admin.register-manage') }}">User&Register Manage</a></li>
+                        </ul>
+
+                        <ul class="navbar-nav ">
+                        <li><a class="nav-link" href="{{ route('admin.auction-manage') }}">Auction Manage</a></li>
+                        </ul>
+
+                        <ul class="navbar-nav ">
+                        <li><a class="nav-link" href="{{ route('admin.donate-manage') }}">Donation Manage</a></li>
                         </ul>
 
                         <ul class="navbar-nav ml-auto">

@@ -17,12 +17,14 @@ class CreateDonateItemsTable extends Migration
           $table->increments('id');
           $table->string('title');
           $table->text('description');
-          $table->string('status')->default('open');
+          $table->string('status')->default('เปิด');
           $table->string('condition')->nullable();
+          $table->string('category');
           $table->dateTime('open_time');
           $table->dateTime('close_time');
           $table->tinyInteger('user_id');
           $table->string('images');
+          $table->string('recipient')->nullable();
           $table->timestamps();
         });
     }

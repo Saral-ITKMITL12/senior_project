@@ -1,32 +1,49 @@
-@extends('layouts.app')
+<html>
+   <head>
+      <title>Ajax Example</title>
+      <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+   </head>
+   <body>
+     <table id="test" border="1">
+       <thead>
+         <tr>
+           <th>ID</th>
+           <th>User id</th>
+           <th>Auction Product id</th>
+           <th>Bid price</th>
+           <th>Created At</th>
+         </tr>
+       </thead>
+       <tbody>
 
-@section('content')
-<h1>Register</h1>
-<hr>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card card-default">
-                <div class="card-header">Register</div>
+       </tbody>
+       <table>
+     <script>
+        function getMessage(){
+           $.ajax({
+              type:'GET',
+              url:'/test',
+              data:'_token = <?php echo csrf_token() ?>',
+              success:function(data){
+                $("#test > tbody").empty();
+                for (var i = 0, len = data.length; i < len; i++) {
+                  console.log(data[i])
+    								var tr = "<tr>";
+    								tr += "<td>" + data[i].id + "</td>";
+    								tr += "<td>" + data[i].user_id + "</td>";
+                    tr += "<td>" + data[i].auction_product_id + "</td>";
+    								tr += "<td>" + data[i].bid_price + "</td>";
+    								tr += + "<td>" + data[i].created_at + "</td>";
+                    $('#test > tbody').append(tr+"</tr>")
+                }
+              }
+           });
+        }
+        setInterval(getMessage, 100);
 
-                <div class="card-body">
-                    <form method="POST" action="/testing/upload" enctype="multipart/form-data">
-                        @csrf
 
-                          <label>กรุณาอัพโหลดรูปบัตรนักศึกษาเพื่อใช้ยืนยันตัว</label>
-                            <input type="file" name="file" id="file" class="form-control" value="{{old('file')}}">
+     </script>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+   </body>
+
+</html>

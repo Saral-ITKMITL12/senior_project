@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use Laravel\Scout\Searchable;
 class User extends Authenticatable
 {
     use Notifiable;
-
+    use Searchable;
     /**
      * The attributes that are mass assignable.
      *
@@ -24,6 +24,11 @@ class User extends Authenticatable
          return $this->hasMany('App\DonateItem');
      }
 
+     public function DonateTran()
+     {
+         return $this->hasMany('App\DonateTran');
+     }
+
     protected $fillable = [
         'username', 'email','fname','lname', 'password', 'address', 'phone', 'year', 'faculty', 'degree', 'studentcard_id', 'image_id', 'image_profile', 'gender','line_id','accept_status'
     ];
@@ -36,4 +41,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function searchableAs()
+   {
+       return 'users_index';
+   }
 }

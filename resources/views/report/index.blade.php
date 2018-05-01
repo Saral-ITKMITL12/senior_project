@@ -4,24 +4,29 @@
         @if (Session::has('message'))
             <div class="alert alert-info">{{ Session::get('message') }}</div>
         @endif
-        <a class="nav-link" href="{{ route('report.create') }}">Create Report</a></li>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card card-default">
+                    <div class="card-header"><h4>ประวัติการแจ้งปัญหาและร้องเรียน</h4></div>
+                      <div class="card-body">
+
         <table class="table">
-          <thead class="thead-dark">
+          <thead class="table table-striped table-sm ml-3 ">
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Report Title</th>
-              <th scope="col">Report Description</th>
-              <th scope="col">Created At</th>
-              <th scope="col">Action</th>
+              <th>หัวข้อการรายงาน</th>
+              <th>รายละเอียด</th>
+              <th>สร้างเมื่อ</th>
+              <th>สถานะ</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             @foreach($report as $rp)
             <tr>
-              <th scope="row">{{$rp->id}}</th>
               <td><a href="/report/{{$rp->id}}">{{$rp->title}}</a></td>
               <td>{{$rp->description}}</td>
               <td>{{$rp->created_at->toFormattedDateString()}}</td>
+              <td>{{$rp->status}}</td>
               <td>
               <div class="btn-group" role="group" aria-label="Basic example">
                   <a href="{{ URL::to('report/' . $rp->id . '/edit') }}">
@@ -38,4 +43,8 @@
             @endforeach
           </tbody>
         </table>
+        </div>
+        </div>
+        </div>
+        </div>
 @endsection

@@ -6769,7 +6769,85 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+.yourBox {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: X;
+    max-height: X*N
+}
 
+@media (-webkit-min-device-pixel-ratio: 0) {
+    .yourBox {
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* number of lines to show */
+        -webkit-box-orient: vertical;
+    }
+}
+
+.yourBoxOne {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: X;
+    max-height: X*N
+}
+
+@media (-webkit-min-device-pixel-ratio: 0) {
+    .yourBoxOne {
+        display: -webkit-box;
+        -webkit-line-clamp: 1; /* number of lines to show */
+        -webkit-box-orient: vertical;
+    }
+}
+
+.bottom-content {
+  position: absolute;
+  bottom: 0;
+  align : center;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    /* top: 0; */
+    left: 0;
+    background-color: #f2f2f2;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 5px 3px 5px 5px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    display: block;
+    transition: 1.5s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 32px;
+    margin-left: 70px;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
 
 
 .table > thead > tr > td.bulmaBlue,
